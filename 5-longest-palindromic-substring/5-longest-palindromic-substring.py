@@ -1,26 +1,12 @@
-def longest(s,n):
-    dp = [[False]*(n+1)for i in range(n+1)]
-    for g in range(0,n):
-        i,j = 0,g
-        while i<n and j<n:
-            if g == 0:
-                dp[i][j]=True
-                L = i
-                R = j
-            elif g==1:
-                if s[i]==s[j]:
-                    dp[i][j]=True
-                    L = i
-                    R = j
-            else:
-                if s[i]==s[j] and dp[i+1][j-1]==True: 
-                    dp[i][j]=True
-                    L = i
-                    R = j
-            i += 1
-            j += 1
-    return s[L:R+1]
-
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        return longest(s,len(s))
+        res = ""
+        for i in range(len(s)):
+            res = max(res, self.substring(s, i, i), self.substring(s, i, i+1), key=len)
+        return res
+    
+    def substring(self, s, l , r):
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            l -= 1
+            r += 1
+        return s[l+1:r]
