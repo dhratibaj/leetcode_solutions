@@ -1,5 +1,6 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
+        #kadan's Algorithm
         sum,res =0,nums[0]
         for i in nums:
             if sum<0:
