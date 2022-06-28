@@ -5,14 +5,11 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def findPaths(self, root, actualValue):
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if not root:
             return False
-        actualValue-=root.val
+        targetSum-=root.val
         if not root.left and not root.right:
-            if actualValue == 0:
+            if targetSum == 0:
                 return True
-        return self.findPaths(root.left, actualValue) or self.findPaths(root.right, actualValue)
-    
-    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        return self.findPaths(root, targetSum)
+        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)
