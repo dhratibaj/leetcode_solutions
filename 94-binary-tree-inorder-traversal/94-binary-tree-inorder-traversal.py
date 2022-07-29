@@ -5,20 +5,47 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def Inorder(self,root,ans):
+        if root == None:
+            return 
+        self.Inorder(root.left,ans)
+        ans.append(root.val)
+        self.Inorder(root.right,ans)
+        return
+    
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        res = []
-        curr = root
-        pre = None
-        while curr is not None:
-            if curr.left is None:
-                res.append(curr.val)
-                curr = curr.right
-            else: 
-                pre = curr.left
-                while pre.right is not None: 
-                    pre = pre.right
-                pre.right = curr 
-                temp = curr 
-                curr = curr.left 
-                temp.left = None 
-        return res
+        ans = []
+        self.Inorder(root,ans)
+        return ans
+        
+    
+#----------------------------------Cpp-----------------------------------------------
+# /**
+#  * Definition for a binary tree node.
+#  * struct TreeNode {
+#  *     int val;
+#  *     TreeNode *left;
+#  *     TreeNode *right;
+#  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+#  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+#  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+#  * };
+#  */
+# class Solution {
+# public:
+#     void Inorder(TreeNode* root, vector<int> &ans)
+#     {
+#         if(root == NULL) 
+#             return;
+#         Inorder(root->left,ans);
+#         ans.push_back(root->val);
+#         Inorder(root->right,ans);
+#         return;
+#     }
+    
+#     vector<int> inorderTraversal(TreeNode* root) {
+#         vector<int> ans;
+#         Inorder(root,ans);
+#         return ans;
+#     }
+# };
