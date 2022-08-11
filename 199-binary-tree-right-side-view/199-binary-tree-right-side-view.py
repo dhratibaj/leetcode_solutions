@@ -6,6 +6,7 @@
 #         self.right = right
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        # recursive first come first serve
         def collect(node, depth):
             if node:
                 if depth == len(view):
