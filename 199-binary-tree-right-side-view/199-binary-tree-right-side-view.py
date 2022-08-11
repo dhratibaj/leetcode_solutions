@@ -6,11 +6,24 @@
 #         self.right = right
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        if not root:
-            return []
-        right = self.rightSideView(root.right)
-        left = self.rightSideView(root.left)
-        return [root.val] + right + left[len(right):]
+        def collect(node, depth):
+            if node:
+                if depth == len(view):
+                    view.append(node.val)
+                collect(node.right, depth+1)
+                collect(node.left, depth+1)
+        view = []
+        collect(root, 0)
+        return view
+        
+#--------------------all test cases passed recursive(combine right & left)---------------------------------------        
+# class Solution:
+#     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+#         if not root:
+#             return []
+#         right = self.rightSideView(root.right)
+#         left = self.rightSideView(root.left)
+#         return [root.val] + right + left[len(right):]
         
 #------------------------------37 / 216 test cases passed----------------------------------------------------        
 # class Solution:
