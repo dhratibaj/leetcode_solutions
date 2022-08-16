@@ -1,8 +1,12 @@
-from collections import Counter
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        c=Counter(s)
+        a = {}
         for i in range(len(s)):
-            if c[s[i]]==1:
-                return i
-        return -1  
+            if s[i] not in a:
+                a[s[i]] = [i]
+            else:
+                a[s[i]].append(i)
+        for i in a:
+            if len(a[i])==1:
+                return a[i][0]
+        return -1
