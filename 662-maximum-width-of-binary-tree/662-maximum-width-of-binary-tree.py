@@ -1,34 +1,17 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    int widthOfBinaryTree(TreeNode* root) {
-        if(!root) return 0;
-        int ans=0;
-        queue<pair<TreeNode*, int>> q;
-        q.push({root,0});
-        while(!q.empty()){
-            int size = q.size(),mmin = q.front().second,first,last;
-            for(int i=0;i<size;i++){
-                int cur_id = q.front().second-mmin;
-                TreeNode* node = q.front().first;
-                q.pop();
-                if(i==0) first = cur_id;
-                if(i==size-1) last = cur_id;
-                if(node->left) q.push({node->left,(long long) cur_id*2+1});
-                if(node->right) q.push({node->right,(long long) cur_id*2+2});
-            }
-            ans = max(ans,last-first+1);
-        }
-        return ans;
-    }
-};
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+from collections import defaultdict
+class Solution:
+    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        di = defaultdict(list)
+        def dfs(node, level, column):
+            if node:
+                di[level].append(column)
+                dfs(node.left, level+1, column*2)
+                dfs(node.right, level+1, column*2+1)
+        dfs(root, 0 , 0)
+        return max([max(di[level]) - min(di[level]) +1 for level in di])
