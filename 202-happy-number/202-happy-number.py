@@ -1,11 +1,12 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
-        def get_next(number):
-            total_sum = 0
-            while number > 0:
-                number, digit = divmod(number, 10)
-                total_sum += digit ** 2
-            return total_sum  
-        while n != 1 and n != 4:
-            n = get_next(n) 
-        return n == 1
+        seen = set()
+        while True:
+            if n in seen:
+                return False
+            elif n == 1:
+                return True
+            else:
+                seen.add(n)
+				# h(x): convert int to str -> sum(foreach character in str -> int(character) ^ 2) 
+                n = sum([int(x) ** 2 for x in str(n)])
