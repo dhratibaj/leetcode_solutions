@@ -1,12 +1,10 @@
-class Solution:
-    def sumOddLengthSubarrays(self, arr: List[int]) -> int:
-        summ = sum(arr)
-        if len(arr)<3:
-            return summ
-        else:
-            for i in range(3,len(arr)+1,2):
-                j = 0
-                while(j+i<=len(arr)):
-                    summ += sum(arr[j:j+i])
-                    j += 1
-            return summ
+class Solution {
+public:
+    int sumOddLengthSubarrays(vector<int>& arr) {
+        int res = 0, n = arr.size();
+        for (int i = 0; i < n; ++i) {
+            res += ((i + 1) * (n - i) + 1) / 2 * arr[i];
+        }
+        return res;
+    }
+};
