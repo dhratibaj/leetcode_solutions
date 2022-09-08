@@ -1,12 +1,16 @@
 class Solution:
     def interpret(self, command: str) -> str:
-        res = ''
-        for i in range(len(command)):
+        res = ""
+        n,i = len(command),0
+        while(i<n):
             if command[i]=='G':
                 res += 'G'
-            elif command[i:i+2] == '()':
+                i += 1
+            elif command[i] == '(' and command[i+1] == ')':
                 res += 'o'
-            elif i+3 < len(command):
-                if command[i:i+4] == '(al)':
-                    res += 'al'
+                i+= 2
+            else:
+                res += 'al'
+                i += 4
         return res
+        
