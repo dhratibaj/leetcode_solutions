@@ -1,8 +1,8 @@
 <h2><a href="https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/">1309. Decrypt String from Alphabet to Integer Mapping</a></h2><h3>Easy</h3><hr><div><p>You are given a string <code>s</code> formed by digits and <code>'#'</code>. We want to map <code>s</code> to English lowercase characters as follows:</p>
 
 <ul>
-	<li>Characters (<code>'a'</code> to <code>'i')</code> are represented by (<code>'1'</code> to <code>'9'</code>) respectively.</li>
-	<li>Characters (<code>'j'</code> to <code>'z')</code> are represented by (<code>'10#'</code> to <code>'26#'</code>) respectively.</li>
+	<li>Characters (<code>'a'</code> to <code>'i'</code>) are represented by (<code>'1'</code> to <code>'9'</code>) respectively.</li>
+	<li>Characters (<code>'j'</code> to <code>'z'</code>) are represented by (<code>'10#'</code> to <code>'26#'</code>) respectively.</li>
 </ul>
 
 <p>Return <em>the string formed after mapping</em>.</p>
