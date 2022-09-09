@@ -1,12 +1,19 @@
-class Solution:
-    def freqAlphabets(self, s: str) -> str:
-        res,n = "",len(s)
-        i = n-1
-        while(i>=0):
-            if s[i] == '#':
-                res += chr(ord("a")+int(s[i-2:i])-1)
-                i -= 3
-            else:
-                res += chr(ord("a") + int(s[i])-1)
-                i -= 1
-        return res[::-1]
+class Solution {
+public:
+    string freqAlphabets(string s) {
+       int n = s.length(), i = 0;
+        string ans = "";
+        while(i < n){
+            if(i + 2 < n && s[i + 2] == '#') {
+                int ss = (s[i]-'0')*10 + (s[i+1]-'0');
+                ans += char(ss+'a'-1);
+                i += 3;
+            }
+            else {
+                ans += char(s[i]-'0'-1+'a');
+                i++;
+            }
+        }
+        return ans; 
+    }
+};
