@@ -1,18 +1,18 @@
 class Solution:
     def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
-        row = len(mat)
-        col = len(mat[0])
-        newmat = []
-        if row*col != r*c:
+        # Base case...
+        if not mat: return mat
+        # If transformation doesn't occur, return mat...
+        if len(mat) * len(mat[0]) != r * c:
             return mat
-        arr = []
-        newcol = 0
-        for i in range(row):
-            for j in range(col):
-                arr.append(mat[i][j])
-                newcol += 1
-                if newcol == c:
-                    newmat.append(arr)
-                    arr = []
-                    newcol = 0
-        return newmat
+        # Otherwise create a output matrix and fill the cells...
+        output = [[0 for i in range(c)] for i in range(r)]
+        idx = 0
+        # Traverse the matrix through the loop... 
+        while idx < r * c:
+            # idx % c will give us the current column number...
+            # idx / c will give us how many rows we have completely filled...
+            output[idx // c][ idx % c] =  mat[idx // len(mat[0])][idx % len(mat[0])]
+            idx += 1
+        return output
+    # O(r*c)
