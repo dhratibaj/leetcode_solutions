@@ -10,23 +10,13 @@
  */
 class Solution {
 public:
-    int BinToDec(string s){
-        int n = s.length(),i=0;
-        int j = n-1,sum=0;
-        while(i<n){
-            if(s[i]=='1')
-                sum += pow(2,j);
-            i++;j--;
-        }
-       return sum; 
-    }
-    
     int getDecimalValue(ListNode* head) {
-        string s = "";
-        while(head){
-            s += to_string(head->val);
+        int res = 0;
+        while (head) {
+            res <<= 1;
+            res |= head->val;
             head = head->next;
         }
-        return BinToDec(s);
+        return res;
     }
 };
