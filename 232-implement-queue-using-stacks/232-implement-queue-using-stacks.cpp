@@ -3,8 +3,6 @@ class MyQueue {
     stack<int> out;
 public:
     MyQueue() {
-        in = stack<int>();
-        out = stack<int>(); 
     }
     
     void push(int x) {
@@ -34,7 +32,7 @@ public:
     }
     
     bool empty() {
-        return out.empty() && in.empty();
+        return  in.empty() &&out.empty();
     }
 };
 
