@@ -1,15 +1,12 @@
 class Solution {
 public:
-    void findAll(vector<int>& a, int t, int idx, vector<vector<int>> &res,vector<int> &ans){
-        if(t==0){
-            res.push_back(ans);
-            return;
-        }
-        for(int i=idx;i<a.size();i++){
-            if(i>idx && a[i]==a[i-1]) continue;
-            if(a[i]>t) break;
-            ans.push_back(a[i]);
-            findAll(a,t-a[i],i+1,res,ans);
+    void solve(vector<int>& arr, int t, int idx, vector<vector<int>>&res, vector<int>&ans){
+        if(t==0){ res.push_back(ans); return;}
+        for(int i=idx;i<arr.size();i++){
+            if(i>idx && arr[i]==arr[i-1]) continue;
+            if(arr[i]>t)break;
+            ans.push_back(arr[i]);
+            solve(arr,t-arr[i],i+1,res,ans);
             ans.pop_back();
         }
     }
@@ -18,7 +15,7 @@ public:
         vector<vector<int>> res;
         vector<int> ans;
         sort(candidates.begin(),candidates.end());
-        findAll(candidates,target,0,res,ans);
+        solve(candidates,target,0,res,ans);
         return res;
     }
 };
